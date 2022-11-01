@@ -45,6 +45,13 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+
+  void swithScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const TODOPage()),
+    );
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -102,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     size: 35,
                   )),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => {widget.swithScreen(context)},
                   icon: const Icon(
                     Icons.home_outlined,
                     color: Colors.white,
@@ -159,6 +166,58 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class TODOPage extends StatelessWidget {
+  const TODOPage({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        flexibleSpace: Container(
+          height: 60,
+          color: Theme.of(context).primaryColorDark,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                  onPressed: () => {},
+                  tooltip: "Increment",
+                  icon: const Icon(
+                    Icons.abc,
+                    color: Colors.white,
+                    size: 35,
+                  )),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.access_alarm_sharp,
+                    color: Colors.white,
+                    size: 35,
+                  )),
+              IconButton(
+                  onPressed: () => {swithScreen(context)},
+                  icon: const Icon(
+                    Icons.home_outlined,
+                    color: Colors.white,
+                    size: 35,
+                  )),
+            ],
+          ),
+        ),
+      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Text(
+              "Press the button to return to home screen",
+              style: Theme.of(context).textTheme.headline1,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
