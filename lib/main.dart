@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.cyan,
       ),
-      home: const MyHomePage(title: 'My First App'),
+      home: const MyHomePage(title: 'TODO app'),
     );
   }
 }
@@ -88,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               IconButton(
                   onPressed: _incrementCounter1,
+                  tooltip: "Increment",
                   icon: const Icon(
                     Icons.abc,
                     color: Colors.white,
@@ -96,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
               IconButton(
                   onPressed: () {},
                   icon: const Icon(
-                    Icons.home_outlined,
+                    Icons.access_alarm_sharp,
                     color: Colors.white,
                     size: 35,
                   )),
