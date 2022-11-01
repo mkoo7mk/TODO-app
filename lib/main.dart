@@ -45,13 +45,6 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
-
-  void swithScreen(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const TODOPage()),
-    );
-  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -74,6 +67,19 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void newSubScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const TODOPage()),
+    );
+  }
+
+  Column newTodoField(List list) {
+    return Column(
+      children: [for (String item in list) Text(item)],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -87,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        centerTitle: true,
         flexibleSpace: Container(
           height: 60,
           color: Theme.of(context).primaryColorDark,
@@ -109,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     size: 35,
                   )),
               IconButton(
-                  onPressed: () => {widget.swithScreen(context)},
+                  onPressed: () => {newSubScreen(context)},
                   icon: const Icon(
                     Icons.home_outlined,
                     color: Colors.white,
@@ -122,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
+        child: ListView(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -137,21 +144,26 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter1',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            const Text(
-              'You have pushed the button2 this many times:',
-            ),
-            Text(
-              '$_counter2',
-              style: Theme.of(context).textTheme.headline5,
+            Center(
+              child: ListView(
+                children: [
+                  const Text(
+                    'You have pushed the button this many times:',
+                  ),
+                  Text(
+                    '$_counter1',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  const Text(
+                    'You have pushed the button2 this many times:',
+                  ),
+                  Text(
+                    '$_counter2',
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                ],
+              ),
             ),
             FloatingActionButton(
               onPressed: _incrementCounter2,
@@ -164,6 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter1,
         tooltip: 'Increment',
+        backgroundColor: Theme.of(context).primaryColorDark,
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
@@ -198,7 +211,7 @@ class TODOPage extends StatelessWidget {
                     size: 35,
                   )),
               IconButton(
-                  onPressed: () => {swithScreen(context)},
+                  onPressed: () {},
                   icon: const Icon(
                     Icons.home_outlined,
                     color: Colors.white,
